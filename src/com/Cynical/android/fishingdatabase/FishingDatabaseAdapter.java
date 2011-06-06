@@ -1,11 +1,13 @@
 package com.Cynical.android.fishingdatabase;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class FishingDatabaseAdapter extends SQLiteOpenHelper {
+public class FishingDatabaseAdapter {
 	
 	// Database Constants
 	private static final String DATABASE_NAME =  "data";
@@ -17,6 +19,7 @@ public class FishingDatabaseAdapter extends SQLiteOpenHelper {
 	
 	// Names of "fish" database table columns
 	public static final String FISH_KEY_ROWID = "fishid";
+	public static final String FISH_KEY_DATE_TIME = "datetime";
 	public static final String FISH_KEY_SPECIES = "species";
 	public static final String FISH_KEY_LENGTH = "length";
 	public static final String FISH_KEY_WEIGHT = "weight";
@@ -27,6 +30,13 @@ public class FishingDatabaseAdapter extends SQLiteOpenHelper {
 	public static final String FISH_KEY_WATERTEMP = "watertemp";
 	public static final String FISH_KEY_LATITUDE = "latitude";
 	public static final String FISH_KEY_LONGITUDE = "longitude";
+	public static final String FISH_KEY_TEMP = "temperature";
+	public static final String FISH_KEY_CONDITIONS = "conditions";
+	public static final String FISH_KEY_HUMIDITY = "humidity";
+	public static final String FISH_KEY_WINDSPEED = "windspeed";
+	public static final String FISH_KEY_WINDDIR = "winddir";
+	public static final String FISH_KEY_BARPRESSURE = "barpressure";
+	public static final String FISH_KEY_DEWPOINT = "dewpoint";
 	
 	// Names of "lure" database table columns
 	public static final String LURE_KEY_ROWID = "lureid";
@@ -46,6 +56,7 @@ public class FishingDatabaseAdapter extends SQLiteOpenHelper {
 	private final String CREATE_TABLE_FISH = 
 		"CREATE TABLE " + DATABASE_FISH_TABLE + "(" +
 		FISH_KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
+		FISH_KEY_DATE_TIME + " TEXT NULL , " +
 		FISH_KEY_SPECIES + " TEXT NULL , " + 
 		FISH_KEY_LENGTH + " REAL NULL , " + 
 		FISH_KEY_WEIGHT + " REAL NULL , " + 
@@ -55,7 +66,14 @@ public class FishingDatabaseAdapter extends SQLiteOpenHelper {
 		FISH_KEY_LAKENAME + " TEXT NULL , " + 
 		FISH_KEY_WATERTEMP + " REAL NULL , " + 
 		FISH_KEY_LATITUDE + " REAL NULL , " + 
-		FISH_KEY_LONGITUDE + " REAL NULL );";
+		FISH_KEY_LONGITUDE + " REAL NULL , " + 
+		FISH_KEY_TEMP + " REAL NULL , " + 
+		FISH_KEY_CONDITIONS + " TEXT NULL , " + 
+		FISH_KEY_HUMIDITY + " INTEGER NULL , " + 
+		FISH_KEY_WINDSPEED + " INTEGER NULL , " + 
+		FISH_KEY_WINDDIR + " TEXT NULL , " +
+		FISH_KEY_BARPRESSURE + " REAL NULL , " + 
+		FISH_KEY_DEWPOINT + " INTEGER NULL );";
 	
 	// Create the string used to create the "lure" table
 	private final String CREATE_TABLE_LURE = 
@@ -77,26 +95,94 @@ public class FishingDatabaseAdapter extends SQLiteOpenHelper {
 		SPECIES_KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
 		SPECIES_KEY_SPECIESNAME + " TEXT NOT NULL );";
 
-
-	public FishingDatabaseAdapter(Context context, String name,
-			CursorFactory factory, int version) 
+	private final Context ctx;
+	private FishingDatabaseHelper dbHelper;
+	private SQLiteDatabase db;
+	
+	
+	public FishingDatabaseAdapter(Context mCtx)
 	{
-		super(context, name, factory, version);
-		
-	}
-
-	@Override
-	public void onCreate(SQLiteDatabase db) {
-		//TODO change the CREATE string
-		db.execSQL("Create database");
-	}
-
-	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
-		
+		this.ctx = mCtx;
 	}
 	
+	public FishingDatabaseAdapter open()
+	{
+		this.dbHelper = new FishingDatabaseHelper(ctx, DATABASE_NAME, null, DATABASE_VERSION);
+		this.db = dbHelper.getWritableDatabase();
+		return this;
+	}
+	
+	public void close()
+	{
+		this.dbHelper.close();
+	}
+	
+	//For testing purposes
+	public void deleteDatabase(Context mCtx)
+	{
+		mCtx.deleteDatabase(DATABASE_NAME);
+	}
+	
+	public long addLure(String type, String color)
+	{
+		ContentValues cv = new ContentValues();
+		cv.put(LURE_KEY_LURETYPE, type);
+		cv.put(LURE_KEY_LURECOLOR, color);
+		long id = this.db.insert(DATABASE_LURE_TABLE, null, cv);
+		return id;
+	}
+	
+	public Cursor getLures()
+	{
+		String[] columns = new String[2];
+		columns[0] = LURE_KEY_LURETYPE;
+		columns[1] = LURE_KEY_LURECOLOR;
+		return this.db.query(DATABASE_LURE_TABLE, columns, null, null, null, null, null);
+	}
+	
+	public long addLake(String lakeName, String weatherStationId)
+	{
+		ContentValues cv = new ContentValues();
+		cv.put(LAKE_KEY_LAKENAME, lakeName);
+		cv.put(LAKE_KEY_WEATHERSTATION, weatherStationId);
+		long id = this.db.insert(CREATE_TABLE_LAKE, null, cv);
+		return id;
+	}
+	
+	public long addSpecies(String speciesName)
+	{
+		ContentValues cv = new ContentValues();
+		cv.put(SPECIES_KEY_SPECIESNAME, speciesName);
+		long id = this.db.insert(CREATE_TABLE_SPECIES, null, cv);
+		return id;
+	}
+	
+	public class FishingDatabaseHelper extends SQLiteOpenHelper
+	{		
+	
+		public FishingDatabaseHelper(Context context, String name,
+				CursorFactory factory, int version) {
+			super(context, name, null, version);
+			
+		}
 
+		@Override
+		public void onCreate(SQLiteDatabase db) {
+			
+			// Create the database tables
+			db.execSQL(CREATE_TABLE_FISH);
+			db.execSQL(CREATE_TABLE_LAKE);
+			db.execSQL(CREATE_TABLE_LURE);
+			db.execSQL(CREATE_TABLE_SPECIES);
+			
+		}
+	
+		@Override
+		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+			// TODO Auto-generated method stub
+			
+		}
+	
+	}
 
 }

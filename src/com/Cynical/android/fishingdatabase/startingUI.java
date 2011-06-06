@@ -32,23 +32,10 @@ public class startingUI extends Activity {
         barPressureTV.setText(Double.toString(wr.getBarPressure()) + " in.");
         dewPtTV.setText(Integer.toString(wr.getDewPoint()) + " F");
         
-        //Test FishingDataIO
-        FishingDataIO fdio = new FishingDataIO(this);
-        
-        Vector<Lure> lures = new Vector<Lure>();
-        Vector<String> colors = new Vector<String>();
-        colors.add("Black");
-        colors.add("Bluegill");
-        lures.add(new Lure("Buzzbait", "Strike King", colors));
-        colors = new Vector<String>();
-        colors.add("Red Craw");
-        colors.add("Tiger");
-        lures.add(new Lure("DT-Fat", "Rapala", colors));
-        
-        fdio.saveLures(lures);
-        
-        lures.removeAllElements();
-        
-        lures = fdio.loadLures();
+        FishingDatabaseAdapter fda = new FishingDatabaseAdapter(this);
+        fda.deleteDatabase(this);
+        fda.open();
+        fda.addLure("Buzzbait", "Blue");
+        fda.close();
     }
 }
