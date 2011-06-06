@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, startingUI!</string>
+    <string name="app_name">Fishing Database</string>
+    <string name="fish_species">Fish Species: </string>
+    <string name="fish_length">Fish Length: </string>
+    <string name="fish_weight">Fish Weight: </string>
+    <string name="fish_length_units_inches">inches</string>
+    <string name="fish_length_units_centimeters">cm.</string>
+    <string name="fish_weight_units_lbs">lbs.</string>
+    <string name="fish_weight_units_kg">kg.</string>
+    <string name="lure_type">Lure Type: </string>
+    <string name="lure_color">Lure Color: </string>
+    <string name="empty"></string>
+    <string name="fish_depth">Depth: </string>
+    <string name="fish_depth_units_feet">feet</string>
+    <string name="fish_depth_units_meters">meters</string>
+    <string name="save_fish">Save</string>
+    <string name="water_temp">Water Temp: </string>
+    <string name="water_temp_units_f">deg. F</string>
+    <string name="water_temp_units_c">deg. C</string>
+    <string name="temp">Temp: </string>
+    <string name="conditions">Conditions: </string>
+    <string name="humidity">Humidity: </string>
+    <string name="wind">Wind: </string>
+    <string name="barPressure">Bar. Pressure: </string>
+    <string name="dewPt">Dew Point: </string>
+</resources>

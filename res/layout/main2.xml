@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent" android:gravity="center">
+    <ImageView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/imageView1" android:layout_centerInParent="true" android:src="@drawable/bass_fish_icon_bigger"></ImageView>
+    <TableLayout android:layout_below="@+id/imageView1" android:id="@+id/tableLayout1" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_alignParentLeft="true" android:layout_alignParentRight="true">
+        <TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <Button android:layout_height="wrap_content" android:id="@+id/button1" android:layout_width="wrap_content" android:layout_weight="1" android:text="Button"></Button>
+            <Button android:layout_height="wrap_content" android:id="@+id/button2" android:layout_width="wrap_content" android:layout_weight="1" android:text="Button"></Button>
+            <Button android:layout_height="wrap_content" android:id="@+id/button3" android:layout_width="wrap_content" android:layout_weight="1" android:text="Button"></Button>
+        </TableRow>
+    </TableLayout>
+</RelativeLayout>
