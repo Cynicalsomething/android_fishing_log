@@ -105,6 +105,10 @@ public class FishingDatabaseAdapter {
 		this.ctx = mCtx;
 	}
 	
+	/**
+	 * Opens the database for writing
+	 * @return A FishingDatabaseAdapter for easy interaction with the database
+	 */
 	public FishingDatabaseAdapter open()
 	{
 		this.dbHelper = new FishingDatabaseHelper(ctx, DATABASE_NAME, null, DATABASE_VERSION);
@@ -112,6 +116,9 @@ public class FishingDatabaseAdapter {
 		return this;
 	}
 	
+	/**
+	 * Closes the database
+	 */
 	public void close()
 	{
 		this.dbHelper.close();
@@ -123,6 +130,12 @@ public class FishingDatabaseAdapter {
 		mCtx.deleteDatabase(DATABASE_NAME);
 	}
 	
+	/**
+	 * Adds a new lure to the "lure" database table
+	 * @param type = The type of lure to add. (e.g. Buzzbait, Texas-rigged worm, etc.)
+	 * @param color = The color of the lure. (e.g. Green, Blue/Black, etc.)
+	 * @return The id number of the row that was added to the database table.
+	 */
 	public long addLure(String type, String color)
 	{
 		ContentValues cv = new ContentValues();
@@ -132,6 +145,10 @@ public class FishingDatabaseAdapter {
 		return id;
 	}
 	
+	/**
+	 * Retrieves all lures in the database table
+	 * @return A Cursor object that contains all lures in the database table
+	 */
 	public Cursor getLures()
 	{
 		String[] columns = new String[2];
@@ -140,6 +157,13 @@ public class FishingDatabaseAdapter {
 		return this.db.query(DATABASE_LURE_TABLE, columns, null, null, null, null, null);
 	}
 	
+	/**
+	 * Adds a new lake to the "lake" database table
+	 * @param lakeName = The name of the lake to add (e.g. Circle Lake, Cedar Lake, etc.)
+	 * @param weatherStationId = The 4-letter NOAA NWS weather station id of the closest
+	 * weather station.
+	 * @return The id number of the row that was added to the database table. 
+	 */
 	public long addLake(String lakeName, String weatherStationId)
 	{
 		ContentValues cv = new ContentValues();
@@ -149,6 +173,11 @@ public class FishingDatabaseAdapter {
 		return id;
 	}
 	
+	/**
+	 * Adds a new species to the "species" database table.
+	 * @param speciesName = The name of the species to add (e.g. Northern Pike, Largemouth Bass, etc.)
+	 * @return The id number of the row that was added to the database table.
+	 */
 	public long addSpecies(String speciesName)
 	{
 		ContentValues cv = new ContentValues();

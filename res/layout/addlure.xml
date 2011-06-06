@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent" android:orientation="vertical">
+    <TextView android:text="@string/lure_type" android:layout_height="wrap_content" android:id="@+id/textView1" android:layout_width="wrap_content"></TextView>
+    <EditText android:layout_height="wrap_content" android:layout_width="match_parent" android:text="@string/empty" android:id="@+id/luretype_edittext"></EditText>
+    <TextView android:text="@string/lure_color" android:layout_height="wrap_content" android:id="@+id/textView2" android:layout_width="wrap_content"></TextView>
+    <EditText android:layout_height="wrap_content" android:layout_width="match_parent" android:text="@string/empty" android:id="@+id/lurecolor_edittext"></EditText>
+    <LinearLayout android:id="@+id/linearLayout1" android:layout_height="wrap_content" android:layout_width="match_parent">
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/save" android:id="@+id/save_lure_button"></Button>
+        <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="1" android:text="@string/cancel" android:id="@+id/cancel_add_lure_button"></Button>
+    </LinearLayout>
+</LinearLayout>

@@ -15,7 +15,7 @@
     <string name="fish_depth">Depth: </string>
     <string name="fish_depth_units_feet">feet</string>
     <string name="fish_depth_units_meters">meters</string>
-    <string name="save_fish">Save</string>
+    <string name="save">Save</string>
     <string name="water_temp">Water Temp: </string>
     <string name="water_temp_units_f">deg. F</string>
     <string name="water_temp_units_c">deg. C</string>
@@ -25,4 +25,6 @@
     <string name="wind">Wind: </string>
     <string name="barPressure">Bar. Pressure: </string>
     <string name="dewPt">Dew Point: </string>
+    <string name="cancel">Cancel</string>
+    <string name="menu_add_lure">Add Lure</string>
 </resources>

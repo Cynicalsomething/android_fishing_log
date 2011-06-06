@@ -44,6 +44,6 @@
                 <Button android:layout_height="wrap_content" android:id="@+id/water_temp_units" android:layout_width="wrap_content" android:text="@string/water_temp_units_f"></Button>
             </TableRow>
         </TableLayout>
-        <Button android:layout_width="wrap_content" android:layout_marginTop="25dp" android:layout_height="wrap_content" android:layout_gravity="center" android:id="@+id/save_fish_button" android:text="@string/save_fish"></Button>
+        <Button android:layout_width="wrap_content" android:layout_marginTop="25dp" android:layout_height="wrap_content" android:layout_gravity="center" android:id="@+id/save_fish_button" android:text="@string/save"></Button>
     </LinearLayout>
 </ScrollView>
