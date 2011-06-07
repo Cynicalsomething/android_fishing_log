@@ -14,6 +14,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="EditFish" android:label="@string/app_name"></activity>
+        <activity android:name="AddSpecies" android:label="@string/app_name"></activity>
+        <activity android:name="AddLure" android:label="@string/app_name"></activity>
+        <activity android:name="AddLureColor" android:label="@string/app_name"></activity>
 
     </application>
 </manifest>

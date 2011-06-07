@@ -15,6 +15,7 @@ public class FishingDatabaseAdapter {
 	private static final String DATABASE_LURE_TABLE = "lure";
 	private static final String DATABASE_LAKE_TABLE = "lake";
 	private static final String DATABASE_SPECIES_TABLE = "species";
+	private static final String DATABASE_LURETYPES_TABLE = "luretypes";
 	private static final int DATABASE_VERSION = 1;
 	
 	// Names of "fish" database table columns
@@ -51,6 +52,10 @@ public class FishingDatabaseAdapter {
 	// Names of "species" database table columns
 	public static final String SPECIES_KEY_ROWID = "speciesid";
 	public static final String SPECIES_KEY_SPECIESNAME = "speciesname";
+	
+	//Names of "luretypes" database table columns
+	public static final String LURETYPES_KEY_ROWID = "luretypeid";
+	public static final String LURETYPES_KEY_LURETYPE = "luretype";
 	
 	// Create the string used to create the "fish" table
 	private final String CREATE_TABLE_FISH = 
@@ -94,6 +99,12 @@ public class FishingDatabaseAdapter {
 		"CREATE TABLE " + DATABASE_SPECIES_TABLE + " (" + 
 		SPECIES_KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
 		SPECIES_KEY_SPECIESNAME + " TEXT NOT NULL );";
+	
+	//Create the string used to create the "luretypes" tables
+	private final String CREATE_TABLE_LURETYPES = 
+		"CREATE TABLE " + DATABASE_LURETYPES_TABLE + " (" + 
+		LURETYPES_KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
+		LURETYPES_KEY_LURETYPE + " TEXT NOT NULL );";
 
 	private final Context ctx;
 	private FishingDatabaseHelper dbHelper;
@@ -129,6 +140,26 @@ public class FishingDatabaseAdapter {
 	{
 		mCtx.deleteDatabase(DATABASE_NAME);
 	}
+	/**
+	 * Adds a new lure to the "luretypes" database table
+	 * @param luretype = the name of the Lure Type to add. (e.g. Buzzbait, 
+	 * Texas-rigged worm, etc.)
+	 * @return = the id number of the row that was added to the database table.
+	 */
+	public long addLure(String luretype)
+	{
+		ContentValues cv = new ContentValues();
+		cv.put(LURETYPES_KEY_LURETYPE, luretype);
+		long id = this.db.insert(DATABASE_LURETYPES_TABLE, null, cv);
+		return id;
+	}
+	
+	public Cursor getLureTypes()
+	{
+		String columns[] = new String[] {LURETYPES_KEY_LURETYPE};
+		return this.db.query(DATABASE_LURETYPES_TABLE, columns,
+				null, null, null, null, null);
+	}
 	
 	/**
 	 * Adds a new lure to the "lure" database table
@@ -136,7 +167,7 @@ public class FishingDatabaseAdapter {
 	 * @param color = The color of the lure. (e.g. Green, Blue/Black, etc.)
 	 * @return The id number of the row that was added to the database table.
 	 */
-	public long addLure(String type, String color)
+	public long addLureWithColor(String type, String color)
 	{
 		ContentValues cv = new ContentValues();
 		cv.put(LURE_KEY_LURETYPE, type);
@@ -151,10 +182,20 @@ public class FishingDatabaseAdapter {
 	 */
 	public Cursor getLures()
 	{
-		String[] columns = new String[2];
-		columns[0] = LURE_KEY_LURETYPE;
-		columns[1] = LURE_KEY_LURECOLOR;
+		String[] columns = new String[] {LURE_KEY_LURETYPE, LURE_KEY_LURECOLOR};
 		return this.db.query(DATABASE_LURE_TABLE, columns, null, null, null, null, null);
+	}
+	
+	/**
+	 * Retrieves all colors of a given Luretype.
+	 * @param luretype = The name of the Lure Type to find colors for.
+	 * @return = The Cursor that contains all the colors of the given luretype.
+	 */
+	public Cursor getLureTypeColors(String luretype)
+	{
+		String[] columns = new String[] {LURE_KEY_LURECOLOR};
+		return this.db.query(CREATE_TABLE_LURE, columns, LURE_KEY_LURETYPE + "=" + luretype,
+				null, null, null, null);
 	}
 	
 	/**
@@ -169,7 +210,7 @@ public class FishingDatabaseAdapter {
 		ContentValues cv = new ContentValues();
 		cv.put(LAKE_KEY_LAKENAME, lakeName);
 		cv.put(LAKE_KEY_WEATHERSTATION, weatherStationId);
-		long id = this.db.insert(CREATE_TABLE_LAKE, null, cv);
+		long id = this.db.insert(DATABASE_LAKE_TABLE, null, cv);
 		return id;
 	}
 	
@@ -182,8 +223,15 @@ public class FishingDatabaseAdapter {
 	{
 		ContentValues cv = new ContentValues();
 		cv.put(SPECIES_KEY_SPECIESNAME, speciesName);
-		long id = this.db.insert(CREATE_TABLE_SPECIES, null, cv);
+		long id = this.db.insert(DATABASE_SPECIES_TABLE, null, cv);
 		return id;
+	}
+	
+	public Cursor getSpecies()
+	{
+		String[] columns = new String[1];
+		columns[0] = SPECIES_KEY_SPECIESNAME;
+		return this.db.query(DATABASE_SPECIES_TABLE, columns, null, null, null, null, null);
 	}
 	
 	public class FishingDatabaseHelper extends SQLiteOpenHelper
@@ -203,7 +251,7 @@ public class FishingDatabaseAdapter {
 			db.execSQL(CREATE_TABLE_LAKE);
 			db.execSQL(CREATE_TABLE_LURE);
 			db.execSQL(CREATE_TABLE_SPECIES);
-			
+			db.execSQL(CREATE_TABLE_LURETYPES);
 		}
 	
 		@Override

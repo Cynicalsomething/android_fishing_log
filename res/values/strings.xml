@@ -27,4 +27,7 @@
     <string name="dewPt">Dew Point: </string>
     <string name="cancel">Cancel</string>
     <string name="menu_add_lure">Add Lure</string>
+    <string name="addlure_luretype">Lure Type (E.g. Buzzbait, Jig, Crankbait, etc.) :</string>
+    <string name="main_screen_addlure">Add a Lure</string>
+    <string name="menu_add_lurecolor">Add Lure Color</string>
 </resources>
