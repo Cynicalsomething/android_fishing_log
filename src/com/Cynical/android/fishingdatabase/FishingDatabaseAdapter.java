@@ -47,7 +47,6 @@ public class FishingDatabaseAdapter {
 	// Names of "lake" database table columns
 	public static final String LAKE_KEY_ROWID = "lakeid";
 	public static final String LAKE_KEY_LAKENAME = "lakename";
-	public static final String LAKE_KEY_WEATHERSTATION = "weatherstationid";
 	
 	// Names of "species" database table columns
 	public static final String SPECIES_KEY_ROWID = "speciesid";
@@ -91,8 +90,7 @@ public class FishingDatabaseAdapter {
 	private final String CREATE_TABLE_LAKE = 
 		"CREATE TABLE " + DATABASE_LAKE_TABLE + " (" + 
 		LAKE_KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT , " + 
-		LAKE_KEY_LAKENAME + " TEXT NOT NULL , " + 
-		LAKE_KEY_WEATHERSTATION + " TEXT NULL );";
+		LAKE_KEY_LAKENAME + " TEXT NOT NULL );";
 	
 	// Create the string used to create the "species" table
 	private final String CREATE_TABLE_SPECIES = 
@@ -205,11 +203,10 @@ public class FishingDatabaseAdapter {
 	 * weather station.
 	 * @return The id number of the row that was added to the database table. 
 	 */
-	public long addLake(String lakeName, String weatherStationId)
+	public long addLake(String lakeName)
 	{
 		ContentValues cv = new ContentValues();
 		cv.put(LAKE_KEY_LAKENAME, lakeName);
-		cv.put(LAKE_KEY_WEATHERSTATION, weatherStationId);
 		long id = this.db.insert(DATABASE_LAKE_TABLE, null, cv);
 		return id;
 	}
