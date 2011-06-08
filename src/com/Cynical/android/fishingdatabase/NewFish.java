@@ -16,6 +16,9 @@ public class NewFish extends Activity {
 		FDLocationListener fdll = new FDLocationListener();
 		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, fdll);
 		
+		
+		
+		lm.removeUpdates(fdll);
 	}
 	
 }
