@@ -74,7 +74,7 @@ public class AddLureColor extends Activity {
 				return;
 			}
 		});
-		
+		c.close();
 		fda.close();
 	}
 	
