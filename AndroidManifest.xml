@@ -19,6 +19,7 @@
         <activity android:name="AddSpecies" android:label="@string/app_name"></activity>
         <activity android:name="AddLure" android:label="@string/app_name"></activity>
         <activity android:name="AddLureColor" android:label="@string/app_name"></activity>
+        <activity android:label="@string/app_name" android:name="NewFish"></activity>
 
     </application>
 </manifest>

@@ -21,6 +21,8 @@ public class startingUI extends Activity {
         
         Button addLure = (Button) findViewById(R.id.add_lure_button);
         Button addLureColor = (Button) findViewById(R.id.add_lurecolor_button);
+        Button newFish = (Button) findViewById(R.id.new_fish_button);
+        Button addSpecies = (Button) findViewById(R.id.add_species_button);
         
         addLure.setOnClickListener(new OnClickListener() {
 			
@@ -36,6 +38,26 @@ public class startingUI extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(startingUI.this, AddLureColor.class);
+				startActivity(i);
+			}
+		});
+        
+        newFish.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(startingUI.this, NewFish.class);
+				startActivity(i);
+				/*FishingDatabaseAdapter fda = new FishingDatabaseAdapter(startingUI.this);
+				fda.deleteDatabase(startingUI.this);*/
+			}
+		});
+        
+        addSpecies.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(startingUI.this, AddSpecies.class);
 				startActivity(i);
 			}
 		});

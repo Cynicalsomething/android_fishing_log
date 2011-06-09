@@ -5,5 +5,8 @@
   android:layout_height="match_parent" android:orientation="vertical">
     <TextView android:layout_height="wrap_content" android:text="@string/fish_species" android:id="@+id/textView1" android:layout_width="wrap_content"></TextView>
     <EditText android:layout_height="wrap_content" android:layout_width="match_parent" android:text="@string/empty" android:id="@+id/addspecies_edittext_species"></EditText>
-    <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/save" android:id="@+id/save_species_button" android:layout_gravity="center"></Button>
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/linearLayout1">
+        <Button android:text="@string/save" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/save_species_button" android:layout_weight="1"></Button>
+        <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="1" android:text="@string/cancel" android:id="@+id/cancel_species_button"></Button>
+    </LinearLayout>
 </LinearLayout>

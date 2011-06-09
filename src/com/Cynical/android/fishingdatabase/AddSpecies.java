@@ -16,6 +16,7 @@ public class AddSpecies extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.addspecies);
 		Button save = (Button) findViewById(R.id.save_species_button);
+		Button cancel = (Button) findViewById(R.id.cancel_species_button);
 		save.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -53,6 +54,14 @@ public class AddSpecies extends Activity {
 					fda.close();
 					AddSpecies.this.finish();
 				}
+			}
+		});
+		
+		cancel.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				AddSpecies.this.finish();
 			}
 		});
 	}

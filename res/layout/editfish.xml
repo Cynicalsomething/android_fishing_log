@@ -26,8 +26,8 @@
                 <TextView android:layout_height="wrap_content" android:text="@string/lure_color" android:layout_width="wrap_content" android:layout_weight="1" android:id="@+id/textView5"></TextView>
             </TableRow>
             <TableRow android:layout_weight="1" android:id="@+id/tableRow4" android:layout_height="wrap_content" android:layout_width="wrap_content">
-                <Spinner android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="2" android:id="@+id/lure_type"></Spinner>
-                <Spinner android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:id="@+id/lure_color"></Spinner>
+                <Spinner android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="2" android:id="@+id/spinner_lure_type"></Spinner>
+                <Spinner android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:id="@+id/spinner_lure_color"></Spinner>
             </TableRow>
         </TableLayout>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/fish_depth" android:id="@+id/textView6"></TextView>

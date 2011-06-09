@@ -152,6 +152,10 @@ public class FishingDatabaseAdapter {
 		return id;
 	}
 	
+	/**
+	 * Retrieves all lure types in the luretypes database table
+	 * @return A Cursor object that contains all luretypes in the database.
+	 */
 	public Cursor getLureTypes()
 	{
 		String columns[] = new String[] {LURETYPES_KEY_LURETYPE};
@@ -175,10 +179,10 @@ public class FishingDatabaseAdapter {
 	}
 	
 	/**
-	 * Retrieves all lures in the database table
+	 * Retrieves the users lure collection in the lures database table
 	 * @return A Cursor object that contains all lures in the database table
 	 */
-	public Cursor getLures()
+	public Cursor getLureCollection()
 	{
 		String[] columns = new String[] {LURE_KEY_LURETYPE, LURE_KEY_LURECOLOR};
 		return this.db.query(DATABASE_LURE_TABLE, columns, null, null, null, null, null);
@@ -192,7 +196,7 @@ public class FishingDatabaseAdapter {
 	public Cursor getLureTypeColors(String luretype)
 	{
 		String[] columns = new String[] {LURE_KEY_LURECOLOR};
-		return this.db.query(CREATE_TABLE_LURE, columns, LURE_KEY_LURETYPE + "=" + luretype,
+		return this.db.query(DATABASE_LURE_TABLE, columns, LURE_KEY_LURETYPE + "='" + luretype + "'",
 				null, null, null, null);
 	}
 	
