@@ -31,4 +31,5 @@
     <string name="main_screen_addlure">Add a Lure</string>
     <string name="menu_add_lurecolor">Add Lure Color</string>
     <string name="menu_add_species">Add Species</string>
+    <string name="add_fish">Add Fish</string>
 </resources>

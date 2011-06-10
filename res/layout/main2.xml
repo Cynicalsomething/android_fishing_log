@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
-  android:layout_height="match_parent" android:gravity="center">
-    <ImageView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/imageView1" android:layout_centerInParent="true" android:src="@drawable/bass_fish_icon_bigger"></ImageView>
+  android:layout_height="match_parent" android:gravity="center" android:fillViewport="true">
+  <RelativeLayout android:layout_height="match_parent" android:layout_width="match_parent">
+    <ImageView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/imageView1" android:src="@drawable/bass_fish_icon_bigger" android:layout_centerHorizontal="true" android:layout_marginTop="50dp"></ImageView>
     <TableLayout android:layout_below="@+id/imageView1" android:id="@+id/tableLayout1" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_alignParentLeft="true" android:layout_alignParentRight="true">
         <TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content" android:layout_height="wrap_content">
             <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="1" android:text="@string/main_screen_addlure" android:id="@+id/add_lure_button"></Button>
             <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="1" android:text="@string/menu_add_lurecolor" android:id="@+id/add_lurecolor_button"></Button>
-            <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="1" android:text="Button" android:id="@+id/new_fish_button"></Button>
+            <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="1" android:id="@+id/new_fish_button" android:text="@string/add_fish"></Button>
         </TableRow>
         <TableRow android:id="@+id/tableRow2" android:layout_width="wrap_content" android:layout_height="wrap_content">
             <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/menu_add_species" android:id="@+id/add_species_button"></Button>
@@ -17,3 +18,5 @@
         </TableRow>
     </TableLayout>
 </RelativeLayout>
+</ScrollView>
+
