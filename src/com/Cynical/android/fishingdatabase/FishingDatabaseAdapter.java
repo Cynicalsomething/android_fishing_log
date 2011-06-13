@@ -201,10 +201,18 @@ public class FishingDatabaseAdapter {
 	}
 	
 	/**
+	 * Retrieves all lakes in the lake database table
+	 * @return A Cursor object that contains all lures in the database table.
+	 */
+	public Cursor getLakes()
+	{
+		String[] columns = new String[] {LAKE_KEY_LAKENAME};
+		return this.db.query(DATABASE_LAKE_TABLE, columns, null, null, null, null, null);
+	}
+	
+	/**
 	 * Adds a new lake to the "lake" database table
 	 * @param lakeName = The name of the lake to add (e.g. Circle Lake, Cedar Lake, etc.)
-	 * @param weatherStationId = The 4-letter NOAA NWS weather station id of the closest
-	 * weather station.
 	 * @return The id number of the row that was added to the database table. 
 	 */
 	public long addLake(String lakeName)

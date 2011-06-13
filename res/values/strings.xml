@@ -32,4 +32,7 @@
     <string name="menu_add_lurecolor">Add Lure Color</string>
     <string name="menu_add_species">Add Species</string>
     <string name="add_fish">Add Fish</string>
+    <string name="lake_name">Lake Name:</string>
+    <string name="addlake_name">Lake Name: </string>
+    <string name="menu_addlake">Add Lake</string>
 </resources>

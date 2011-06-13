@@ -48,6 +48,7 @@ public class AddLure extends Activity {
 						}
 						c.moveToNext();
 					}
+					c.close();
 				}
 				if(notFoundInDatabase)
 				{

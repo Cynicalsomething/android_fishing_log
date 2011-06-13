@@ -6,6 +6,8 @@
     <LinearLayout android:id="@+id/linearLayout1" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical">
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/fish_species" android:id="@+id/textView1"></TextView>
         <Spinner android:layout_width="match_parent" android:layout_height="wrap_content" android:prompt="@string/fish_species" android:id="@+id/spinner_fishspecies"></Spinner>
+        <TextView android:layout_width="wrap_content" android:text="@string/lake_name" android:id="@+id/textView8" android:layout_height="wrap_content"></TextView>
+        <Spinner android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/spinner_lakename"></Spinner>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/fish_length" android:id="@+id/textView2"></TextView>
         <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/tableLayout1">
             <TableRow android:id="@+id/tableRow1" android:baselineAligned="false" android:layout_height="wrap_content" android:layout_width="wrap_content">

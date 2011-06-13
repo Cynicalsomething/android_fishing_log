@@ -1,5 +1,7 @@
 package com.Cynical.android.fishingdatabase;
 
+import com.Cynical.android.webServices.WeatherRetriever;
+
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,13 +13,20 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Toast;
 
 public class NewFish extends Activity {
 
 	private LocationManager lm;
 	private FDLocationListener fdll;
+	private Spinner speciesSpin;
+	private Spinner lakeSpin;
+	private Spinner lureTypesSpin;
+	private Spinner lureColorSpin;
+	private WeatherRetriever wr;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +49,38 @@ public class NewFish extends Activity {
 				{
 					double latitude = loc.getLatitude();
 					double longitude = loc.getLongitude();
+					wr = new WeatherRetriever(latitude, longitude);
+					wr.retrieveWeather();
+					
+					FishingDatabaseAdapter fda = new FishingDatabaseAdapter(NewFish.this);
+					fda.open();
+					
+					EditText fishLengthET = (EditText) findViewById(R.id.fish_length);
+					EditText fishWeightET = (EditText) findViewById(R.id.fish_weight);
+					EditText fishDepthET = (EditText) findViewById(R.id.fish_depth);
+					EditText waterTempET = (EditText) findViewById(R.id.water_temp);
+					
+					double fishLength = 
+						Double.parseDouble(fishLengthET.getText().toString());
+					double fishWeight = 
+						Double.parseDouble(fishWeightET.getText().toString());
+					double fishDepth = 
+						Double.parseDouble(fishDepthET.getText().toString());
+					double waterTemp = 
+						Double.parseDouble(waterTempET.getText().toString());
+					String species = speciesSpin.getSelectedItem().toString();
+					String lakeName = lakeSpin.getSelectedItem().toString();
+					String lureType = lureTypesSpin.getSelectedItem().toString();
+					String lureColor = lureColorSpin.getSelectedItem().toString();
 					
 					
+					fda.close();
+				}
+				else
+				{
+					Toast.makeText(NewFish.this, 
+							"Couldn't get location.\nFish not Saved...", 
+							Toast.LENGTH_LONG).show();
 				}
 				
 				try {
@@ -75,9 +114,10 @@ public class NewFish extends Activity {
 		super.onStart();
 		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, fdll);
 		
-		Spinner speciesSpin = (Spinner) findViewById(R.id.spinner_fishspecies);
-		Spinner lureTypesSpin = (Spinner) findViewById(R.id.spinner_lure_type);
-		Spinner lureColorSpin = (Spinner) findViewById(R.id.spinner_lure_color);
+		speciesSpin = (Spinner) findViewById(R.id.spinner_fishspecies);
+		lakeSpin = (Spinner) findViewById(R.id.spinner_lakename);
+		lureTypesSpin = (Spinner) findViewById(R.id.spinner_lure_type);
+		lureColorSpin = (Spinner) findViewById(R.id.spinner_lure_color);
 		FishingDatabaseAdapter fda = new FishingDatabaseAdapter(this);
 		fda.open();
 		
@@ -97,6 +137,24 @@ public class NewFish extends Activity {
 					android.R.layout.simple_spinner_item, species);
 			speciesAA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			speciesSpin.setAdapter(speciesAA);
+		}
+		
+		//Populate the Lake Name spinner with lakes in the database
+		c = fda.getLakes();
+		if(c.moveToFirst())
+		{
+			String[] lakes = new String[c.getCount()];
+			int lakesColumnIndex = 
+				c.getColumnIndex(FishingDatabaseAdapter.LAKE_KEY_LAKENAME);
+			for(int i = 0; i < lakes.length; i++)
+			{
+				lakes[i] = c.getString(lakesColumnIndex);
+				c.moveToNext();
+			}
+			ArrayAdapter<String> lakesAA = new ArrayAdapter<String>(this,
+					android.R.layout.simple_spinner_item, lakes);
+			lakesAA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			lakeSpin.setAdapter(lakesAA);
 		}
 		
 		//Populate the Lure Type spinner with lure types in the database
@@ -135,8 +193,7 @@ public class NewFish extends Activity {
 			c.close();
 		}
 		
-		//Populate the Lure Color spinner for the default lure type
-		String selectedLureType = (String) lureTypesSpin.getSelectedItem();
+		
 	}
 	
 	private void populateLureColorSpinner(String selectedLureType, FishingDatabaseAdapter fda)
