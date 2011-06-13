@@ -1,5 +1,8 @@
 package com.Cynical.android.fishingdatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -19,7 +22,7 @@ public class FishingDatabaseAdapter {
 	private static final int DATABASE_VERSION = 1;
 	
 	// Names of "fish" database table columns
-	public static final String FISH_KEY_ROWID = "fishid";
+	public static final String FISH_KEY_ROWID = "_id";
 	public static final String FISH_KEY_DATE_TIME = "datetime";
 	public static final String FISH_KEY_SPECIES = "species";
 	public static final String FISH_KEY_LENGTH = "length";
@@ -40,20 +43,20 @@ public class FishingDatabaseAdapter {
 	public static final String FISH_KEY_DEWPOINT = "dewpoint";
 	
 	// Names of "lure" database table columns
-	public static final String LURE_KEY_ROWID = "lureid";
+	public static final String LURE_KEY_ROWID = "_id";
 	public static final String LURE_KEY_LURETYPE = "luretype";
 	public static final String LURE_KEY_LURECOLOR = "lurecolor";
 	
 	// Names of "lake" database table columns
-	public static final String LAKE_KEY_ROWID = "lakeid";
+	public static final String LAKE_KEY_ROWID = "_id";
 	public static final String LAKE_KEY_LAKENAME = "lakename";
 	
 	// Names of "species" database table columns
-	public static final String SPECIES_KEY_ROWID = "speciesid";
+	public static final String SPECIES_KEY_ROWID = "_id";
 	public static final String SPECIES_KEY_SPECIESNAME = "speciesname";
 	
 	//Names of "luretypes" database table columns
-	public static final String LURETYPES_KEY_ROWID = "luretypeid";
+	public static final String LURETYPES_KEY_ROWID = "_id";
 	public static final String LURETYPES_KEY_LURETYPE = "luretype";
 	
 	// Create the string used to create the "fish" table
@@ -233,6 +236,38 @@ public class FishingDatabaseAdapter {
 		ContentValues cv = new ContentValues();
 		cv.put(SPECIES_KEY_SPECIESNAME, speciesName);
 		long id = this.db.insert(DATABASE_SPECIES_TABLE, null, cv);
+		return id;
+	}
+	
+	public long addFish(String species, String lakeName, double fishLength, 
+			double fishWeight, String lureType, String lureColor, double fishDepth,
+			double waterTemp, double latitude, double longitude, 
+			Date currentDate, double temp, String conditions,
+			int humidity, int windSpeed, String windDir, double barPressure, int dewPoint)
+	{
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+		String currentFormattedDateTime = sdf.format(currentDate);		
+		ContentValues cv = new ContentValues();
+		cv.put(FISH_KEY_SPECIES, species);
+		cv.put(FISH_KEY_LAKENAME, lakeName);
+		cv.put(FISH_KEY_LENGTH, fishLength);
+		cv.put(FISH_KEY_WEIGHT, fishWeight);
+		cv.put(FISH_KEY_LURETYPE, lureType);
+		cv.put(FISH_KEY_LURECOLOR, lureColor);
+		cv.put(FISH_KEY_DEPTH, fishDepth);
+		cv.put(FISH_KEY_WATERTEMP, waterTemp);
+		cv.put(FISH_KEY_LATITUDE, latitude);
+		cv.put(FISH_KEY_LONGITUDE, longitude);
+		cv.put(FISH_KEY_DATE_TIME, currentFormattedDateTime);
+		cv.put(FISH_KEY_TEMP, temp);
+		cv.put(FISH_KEY_CONDITIONS, conditions);
+		cv.put(FISH_KEY_HUMIDITY, humidity);
+		cv.put(FISH_KEY_WINDSPEED, windSpeed);
+		cv.put(FISH_KEY_WINDDIR, windDir);
+		cv.put(FISH_KEY_BARPRESSURE, barPressure);
+		cv.put(FISH_KEY_DEWPOINT, dewPoint);
+		
+		long id = this.db.insert(DATABASE_FISH_TABLE, null, cv);
 		return id;
 	}
 	

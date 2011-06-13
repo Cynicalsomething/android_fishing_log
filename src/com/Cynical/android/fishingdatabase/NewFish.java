@@ -1,8 +1,12 @@
 package com.Cynical.android.fishingdatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.Cynical.android.webServices.WeatherRetriever;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.location.Location;
@@ -73,7 +77,20 @@ public class NewFish extends Activity {
 					String lureType = lureTypesSpin.getSelectedItem().toString();
 					String lureColor = lureColorSpin.getSelectedItem().toString();
 					
+					Date currentDate = new Date();
 					
+					double temp = wr.getTemp();
+					String conditions = wr.getConditions();
+					int humidity = wr.getHumidity();
+					int windspeed = wr.getWindSpeed();
+					String windDir = wr.getWindDir();
+					double barPressure = wr.getBarPressure();
+					int dewPoint = wr.getDewPoint();
+					
+					fda.addFish(species, lakeName, fishLength, fishWeight, lureType, 
+							lureColor, fishDepth, waterTemp, latitude, longitude, 
+							currentDate, temp, conditions, humidity, 
+							windspeed, windDir, barPressure, dewPoint);					
 					fda.close();
 				}
 				else
@@ -138,7 +155,7 @@ public class NewFish extends Activity {
 			speciesAA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			speciesSpin.setAdapter(speciesAA);
 		}
-		
+		c.close();
 		//Populate the Lake Name spinner with lakes in the database
 		c = fda.getLakes();
 		if(c.moveToFirst())
@@ -156,7 +173,7 @@ public class NewFish extends Activity {
 			lakesAA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			lakeSpin.setAdapter(lakesAA);
 		}
-		
+		c.close();
 		//Populate the Lure Type spinner with lure types in the database
 		c = fda.getLureTypes();
 		if(c.moveToFirst())
@@ -190,8 +207,9 @@ public class NewFish extends Activity {
 					
 				}
 			});
-			c.close();
 		}
+		c.close();
+		fda.close();
 		
 		
 	}
@@ -221,6 +239,7 @@ public class NewFish extends Activity {
 	@Override
 	protected void onStop() {
 		super.onStop();
+		
 		try {
 			lm.removeUpdates(fdll);
 		} catch (IllegalArgumentException e) {

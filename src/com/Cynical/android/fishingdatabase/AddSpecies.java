@@ -50,6 +50,7 @@ public class AddSpecies extends Activity {
 							c.moveToNext();
 						}
 					}
+					c.close();
 					fda.addSpecies(species);
 					fda.close();
 					AddSpecies.this.finish();
