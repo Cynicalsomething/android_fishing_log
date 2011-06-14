@@ -273,8 +273,7 @@ public class FishingDatabaseAdapter {
 	
 	public Cursor getSpecies()
 	{
-		String[] columns = new String[1];
-		columns[0] = SPECIES_KEY_SPECIESNAME;
+		String[] columns = new String[] {SPECIES_KEY_ROWID, SPECIES_KEY_SPECIESNAME};
 		return this.db.query(DATABASE_SPECIES_TABLE, columns, null, null, null, null, null);
 	}
 	

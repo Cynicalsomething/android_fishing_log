@@ -1,12 +1,8 @@
 package com.Cynical.android.fishingdatabase;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import com.Cynical.android.webServices.WeatherRetriever;
-
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.location.Location;
@@ -47,7 +43,6 @@ public class NewFish extends Activity {
 			@Override
 			public void onClick(View v) {
 				
-				// TODO Pull location and save info to database
 				Location loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 				if(loc != null)
 				{
@@ -139,7 +134,8 @@ public class NewFish extends Activity {
 		fda.open();
 		
 		//Populate the Fish Species spinner with species in the database
-		Cursor c = fda.getSpecies();		
+		Cursor c = fda.getSpecies();
+		startManagingCursor(c);
 		if(c.moveToFirst())
 		{
 			String species[] = new String[c.getCount()];
@@ -155,7 +151,6 @@ public class NewFish extends Activity {
 			speciesAA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			speciesSpin.setAdapter(speciesAA);
 		}
-		c.close();
 		//Populate the Lake Name spinner with lakes in the database
 		c = fda.getLakes();
 		if(c.moveToFirst())
@@ -173,7 +168,6 @@ public class NewFish extends Activity {
 			lakesAA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			lakeSpin.setAdapter(lakesAA);
 		}
-		c.close();
 		//Populate the Lure Type spinner with lure types in the database
 		c = fda.getLureTypes();
 		if(c.moveToFirst())
@@ -208,7 +202,6 @@ public class NewFish extends Activity {
 				}
 			});
 		}
-		c.close();
 		fda.close();
 		
 		
@@ -218,6 +211,7 @@ public class NewFish extends Activity {
 	{
 		Spinner lureColorSpinner = (Spinner) findViewById(R.id.spinner_lure_color);
 		Cursor c = fda.getLureTypeColors(selectedLureType);
+		startManagingCursor(c);
 		if(c.moveToFirst())
 		{
 			String lureColors[] = new String[c.getCount()];
@@ -233,7 +227,6 @@ public class NewFish extends Activity {
 			lureColorsAA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			lureColorSpinner.setAdapter(lureColorsAA);
 		}
-		c.close();
 	}
 
 	@Override
