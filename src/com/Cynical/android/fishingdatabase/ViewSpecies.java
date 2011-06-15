@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -15,7 +14,7 @@ public class ViewSpecies extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.viewspecies);
+		setContentView(R.layout.viewlist);
 		FishingDatabaseAdapter fda = new FishingDatabaseAdapter(this);
 		fda.open();
 		Cursor c = fda.getSpecies();

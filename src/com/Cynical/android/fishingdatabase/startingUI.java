@@ -24,12 +24,13 @@ public class startingUI extends Activity {
         Button newFish = (Button) findViewById(R.id.new_fish_button);
         Button addSpecies = (Button) findViewById(R.id.add_species_button);
         Button addLake = (Button) findViewById(R.id.add_lake_button);
+        Button miscButton = (Button) findViewById(R.id.main_misc_button);
         
         addLure.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(startingUI.this, AddLure.class);
+				Intent i = new Intent(startingUI.this, ViewFish.class);
 				startActivity(i);
 			}
 		});
@@ -68,6 +69,15 @@ public class startingUI extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(startingUI.this, AddLake.class);
+				startActivity(i);
+			}
+		});
+        
+        miscButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(startingUI.this, FishMap.class);
 				startActivity(i);
 			}
 		});

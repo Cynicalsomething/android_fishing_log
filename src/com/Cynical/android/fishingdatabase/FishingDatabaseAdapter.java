@@ -239,6 +239,28 @@ public class FishingDatabaseAdapter {
 		return id;
 	}
 	
+	/**
+	 * Adds a new fish to the database
+	 * @param species = The species of the fish
+	 * @param lakeName = The lake the fish was caught on
+	 * @param fishLength = The length of the fish
+	 * @param fishWeight = The weight of the fish
+	 * @param lureType = The lure the the fish was caught on
+	 * @param lureColor = The color of the lure the fish was caught on
+	 * @param fishDepth = The depth the fish was caught
+	 * @param waterTemp = The current temp of the water
+	 * @param latitude = The latitude as obtained from the gps
+	 * @param longitude = The longitude as obtained from the gps
+	 * @param currentDate = The current date
+	 * @param temp = The current temp
+	 * @param conditions = The current conditions
+	 * @param humidity = The current humidity
+	 * @param windSpeed = The current wind speed
+	 * @param windDir = The current wind direction
+	 * @param barPressure = The current barometric pressure
+	 * @param dewPoint = The current dew point
+	 * @return The row id number that the fish was inserted into.
+	 */
 	public long addFish(String species, String lakeName, double fishLength, 
 			double fishWeight, String lureType, String lureColor, double fishDepth,
 			double waterTemp, double latitude, double longitude, 
@@ -271,12 +293,30 @@ public class FishingDatabaseAdapter {
 		return id;
 	}
 	
+	public Cursor getFish(int limit)
+	{
+		String[] columns =  new String[] {FISH_KEY_ROWID, FISH_KEY_SPECIES, 
+				FISH_KEY_LAKENAME, FISH_KEY_LENGTH, FISH_KEY_WEIGHT};
+		return this.db.query(DATABASE_FISH_TABLE, columns, 
+				null, null, null, null, FISH_KEY_ROWID + " DESC", 
+				Integer.toString(limit));
+	}
+	
+	/**
+	 * Gets all the species currently in the database
+	 * @return A Cursor object containing all species in the database.
+	 */
 	public Cursor getSpecies()
 	{
 		String[] columns = new String[] {SPECIES_KEY_ROWID, SPECIES_KEY_SPECIESNAME};
 		return this.db.query(DATABASE_SPECIES_TABLE, columns, null, null, null, null, null);
 	}
 	
+	/**
+	 * A class to help create or open the database and database tables
+	 * @author Adam
+	 *
+	 */
 	public class FishingDatabaseHelper extends SQLiteOpenHelper
 	{		
 	
