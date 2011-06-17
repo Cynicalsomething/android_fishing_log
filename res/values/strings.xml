@@ -35,4 +35,7 @@
     <string name="lake_name">Lake Name:</string>
     <string name="addlake_name">Lake Name: </string>
     <string name="menu_addlake">Add Lake</string>
+    <string name="main_list_header_primary_actions">Primary Actions</string>
+    <string name="main_list_header_secondary_actions">Secondary Actions</string>
+    <string name="main_list_header_misc_actions">Miscellaneous Actions</string>
 </resources>

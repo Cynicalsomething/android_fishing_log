@@ -22,7 +22,7 @@
         <activity android:label="@string/app_name" android:name="NewFish"></activity>
         <activity android:label="@string/app_name" android:name="AddLake"></activity>
         <activity android:label="@string/app_name" android:name="ViewSpecies"></activity>
-        <uses-library android:name="com.google.android.maps"></uses-library>
+        <uses-library android:name="com.google.android.maps" android:required="true"></uses-library>
         <activity android:name="FishMap" android:label="@string/app_name"></activity>
         <activity android:name="ViewFish" android:label="@string/app_name"></activity>
 
