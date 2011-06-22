@@ -5,18 +5,12 @@ import java.util.HashMap;
 
 import com.commonsware.cwac.merge.MergeAdapter;
 
-import android.app.Activity;
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -38,10 +32,57 @@ public class startingUI extends ListActivity {
     
     @Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
+    	final int NEW_FISH = 1;
+    	final int VIEW_EDIT_FISH = 2;
+    	final int VIEW_LURE_COLLECTION = 3;
+    	final int ADD_LAKE = 5;
+    	final int ADD_LURE = 6;
+    	final int ADD_LURE_COLOR = 7;
+    	final int ADD_SPECIES = 8;
+    	final int CHECK_WEATHER = 10;
+    	
 		TextView rowTitle = (TextView) v.findViewById(R.id.main_list_row_primary_text);
     	Log.i("Item Clicked", "View: " + 
 				 rowTitle.getText() +
 				" ID: " + position);
+    	Intent i;
+    	switch(position)
+    	{
+    	case NEW_FISH:
+    		i = new Intent(this, NewFish.class);
+    		startActivity(i);
+    		break;
+    	case VIEW_EDIT_FISH:
+    		i = new Intent(this, ViewFish.class);
+    		startActivity(i);
+    		break;
+    	case VIEW_LURE_COLLECTION:
+    		i = new Intent(this, NewFish.class);
+    		startActivity(i);
+    		break;
+    	case ADD_LAKE:
+    		i = new Intent(this, AddLake.class);
+    		startActivity(i);
+    		break;
+    	case ADD_LURE:
+    		i = new Intent(this, AddLure.class);
+    		startActivity(i);
+    		break;
+    	case ADD_LURE_COLOR:
+    		i = new Intent(this, AddLureColor.class);
+    		startActivity(i);
+    		break;
+    	case ADD_SPECIES:
+    		i = new Intent(this, AddSpecies.class);
+    		startActivity(i);
+    		break;
+    	case CHECK_WEATHER:
+    		i = new Intent(this, CurrentWeather.class);
+    		startActivity(i);
+    		break;
+    	default:
+    		break;
+    	}
 	}    
 
 	/**
@@ -69,13 +110,14 @@ public class startingUI extends ListActivity {
         case startingUI.PRIMARY_MENU:
         	map.put(from[0], "New Fish");
             map.put(from[1], "Add a new catch to the database");
-            map.put(from[2], R.drawable.new_fish_icon);
+            map.put(from[2], R.drawable.ic_fish_smile);
             
             menuList.add(map);
             
             map = new HashMap<String, Object>();
             map.put(from[0], "View/Edit Fish");
             map.put(from[1], "View all your fish and edit them if you'd like");
+            map.put(from[2], R.drawable.ic_fish_smile);
             
             menuList.add(map);
             
@@ -89,6 +131,7 @@ public class startingUI extends ListActivity {
         case startingUI.SECONDARY_MENU:
         	map.put(from[0], "Add Lake");
         	map.put(from[1], "Add a new fishing hole to the database");
+        	map.put(from[2], R.drawable.ic_menu_anchor);
         	
         	menuList.add(map);
         	
@@ -114,6 +157,7 @@ public class startingUI extends ListActivity {
         case startingUI.MISC_MENU:
         	map.put(from[0], "Check Weather");
         	map.put(from[1], "Check the current weather based on your location");
+        	map.put(from[2], R.drawable.ic_menu_cloud);
         	
         	menuList.add(map);
         	

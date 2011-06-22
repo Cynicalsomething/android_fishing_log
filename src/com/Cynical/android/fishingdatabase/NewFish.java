@@ -32,7 +32,7 @@ public class NewFish extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.editfish);
-		lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+		lm = (LocationManager) getSystemService(LOCATION_SERVICE);
 		fdll = new FDLocationListener();		
 		
 		Button save = (Button) findViewById(R.id.save_fish_button);
