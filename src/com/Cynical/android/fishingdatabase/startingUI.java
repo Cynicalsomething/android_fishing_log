@@ -10,6 +10,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -28,9 +31,30 @@ public class startingUI extends ListActivity {
         
         ListView mainList = (ListView) findViewById(android.R.id.list);        
         mainList.setAdapter(createFinalMergeAdapter());
+        
     }
     
     @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+    	MenuInflater mi = getMenuInflater();
+        mi.inflate(R.menu.home_menu, menu);
+        return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId())
+		{
+		case R.id.menu_settings:
+			Intent i = new Intent(this, MainPreferences.class);
+			startActivity(i);
+			return true;
+		default:
+			return false;
+		}
+	}
+
+	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
     	final int NEW_FISH = 1;
     	final int VIEW_EDIT_FISH = 2;

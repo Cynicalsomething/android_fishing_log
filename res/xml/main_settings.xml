@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Database Preferences">
+        <Preference android:summary="@string/pref_summary_clear_database" android:title="@string/pref_clear_database" android:key="clear_database"></Preference>
+    </PreferenceCategory>
+    
+</PreferenceScreen>
