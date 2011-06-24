@@ -3,7 +3,6 @@ package com.Cynical.android.fishingdatabase;
 import java.util.Date;
 import com.Cynical.android.webServices.WeatherRetriever;
 import android.app.Activity;
-import android.content.Context;
 import android.database.Cursor;
 import android.location.Location;
 import android.location.LocationManager;
@@ -31,7 +30,7 @@ public class NewFish extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.editfish);
+		setContentView(R.layout.newfish);
 		lm = (LocationManager) getSystemService(LOCATION_SERVICE);
 		fdll = new FDLocationListener();		
 		
