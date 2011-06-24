@@ -11,7 +11,7 @@ public class EditFish extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.editfish);
+		setContentView(R.layout.newfish);
 	}
 
 	@Override

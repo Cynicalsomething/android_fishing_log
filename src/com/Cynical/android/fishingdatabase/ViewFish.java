@@ -2,8 +2,10 @@ package com.Cynical.android.fishingdatabase;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -36,7 +38,10 @@ public class ViewFish extends ListActivity {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-		
+		Log.i("Fish Click", "Id number: " + id);
+		Intent i = new Intent(this, ViewFishDetails.class);
+		i.putExtra("id", id);
+		startActivity(i);
 	}
 	
 	private class FishListCursorAdapter extends SimpleCursorAdapter

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:fillViewport="true" android:layout_width="match_parent" android:layout_height="match_parent">
+	<TableLayout
+	  android:layout_width="match_parent"
+	  android:layout_height="match_parent">
+	    <TableRow android:id="@+id/TableRow05" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="7dp">
+	        <TextView android:layout_weight="1" android:id="@+id/TextView10" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:text="@string/fish_species"></TextView>
+	        <TextView android:layout_weight="1" android:gravity="right" android:text="TextView" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:id="@+id/fish_details_species"></TextView>
+	    </TableRow>
+	    <TableRow android:id="@+id/TableRow06" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="7dp">
+	        <TextView android:layout_weight="1" android:id="@+id/TextView11" android:text="@string/lake_name" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content"></TextView>
+	        <TextView android:layout_weight="1" android:gravity="right" android:text="TextView" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:id="@+id/fish_details_lake"></TextView>
+	    </TableRow>
+	    <TableRow android:id="@+id/TableRow04" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="7dp">
+	        <TextView android:layout_weight="1" android:id="@+id/TextView08" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:text="@string/date_time"></TextView>
+	        <TextView android:layout_weight="1" android:gravity="right" android:text="TextView" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:id="@+id/fish_details_datetime"></TextView>
+	    </TableRow>
+	    <TableRow android:id="@+id/TableRow03" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="7dp">
+	        <TextView android:layout_weight="1" android:id="@+id/TextView06" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:text="@string/fish_length"></TextView>
+	        <TextView android:layout_weight="1" android:gravity="right" android:text="TextView" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:id="@+id/fish_details_length"></TextView>
+	    </TableRow>
+	    <TableRow android:id="@+id/TableRow02" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="7dp">
+	        <TextView android:layout_weight="1" android:id="@+id/TextView04" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:text="@string/fish_weight"></TextView>
+	        <TextView android:layout_weight="1" android:gravity="right" android:text="TextView" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:id="@+id/fish_details_weight"></TextView>
+	    </TableRow>
+	    <TableRow android:id="@+id/TableRow01" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="7dp">
+	        <TextView android:layout_weight="1" android:id="@+id/TextView02" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:text="@string/fish_depth"></TextView>
+	        <TextView android:layout_weight="1" android:gravity="right" android:text="TextView" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:id="@+id/fish_details_depth"></TextView>
+	    </TableRow>
+	    <TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="7dp">
+	        <TextView android:id="@+id/textView1" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:layout_weight="1" android:text="@string/lure"></TextView>
+	        <TextView android:text="TextView" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:layout_weight="1" android:gravity="right" android:id="@+id/fish_details_lure"></TextView>
+	    </TableRow>
+	    <TableRow android:id="@+id/TableRow13" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="7dp">
+	        <TextView android:layout_weight="1" android:id="@+id/TextView26" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:text="@string/water_temp"></TextView>
+	        <TextView android:layout_weight="1" android:gravity="right" android:text="TextView" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:id="@+id/fish_details_water_temp"></TextView>
+	    </TableRow>
+	    <TableRow android:id="@+id/TableRow12" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="7dp">
+	        <TextView android:layout_weight="1" android:id="@+id/TextView24" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:text="@string/outside_temp"></TextView>
+	        <TextView android:layout_weight="1" android:gravity="right" android:text="TextView" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:id="@+id/fish_details_temp"></TextView>
+	    </TableRow>
+	    <TableRow android:id="@+id/TableRow11" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="7dp">
+	        <TextView android:layout_weight="1" android:id="@+id/TextView22" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:text="@string/conditions"></TextView>
+	        <TextView android:layout_weight="1" android:gravity="right" android:text="TextView" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:id="@+id/fish_details_conditions"></TextView>
+	    </TableRow>
+	    <TableRow android:id="@+id/TableRow10" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="7dp">
+	        <TextView android:layout_weight="1" android:id="@+id/TextView20" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:text="@string/humidity"></TextView>
+	        <TextView android:layout_weight="1" android:gravity="right" android:text="TextView" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:id="@+id/fish_details_humidity"></TextView>
+	    </TableRow>
+	    <TableRow android:id="@+id/TableRow09" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="7dp">
+	        <TextView android:layout_weight="1" android:id="@+id/TextView18" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:text="@string/wind"></TextView>
+	        <TextView android:layout_weight="1" android:gravity="right" android:text="TextView" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:id="@+id/fish_details_wind"></TextView>
+	    </TableRow>
+	    <TableRow android:id="@+id/TableRow08" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="7dp">
+	        <TextView android:layout_weight="1" android:id="@+id/TextView16" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:text="@string/barPressure"></TextView>
+	        <TextView android:layout_weight="1" android:gravity="right" android:text="TextView" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:id="@+id/fish_details_bar_pressure"></TextView>
+	    </TableRow>
+	    <TableRow android:id="@+id/TableRow07" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="7dp">
+	        <TextView android:layout_weight="1" android:id="@+id/TextView14" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:text="@string/dewPt"></TextView>
+	        <TextView android:layout_weight="1" android:gravity="right" android:text="TextView" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:id="@+id/fish_details_dew_pt"></TextView>
+	    </TableRow>
+	    
+	</TableLayout>
+</ScrollView>

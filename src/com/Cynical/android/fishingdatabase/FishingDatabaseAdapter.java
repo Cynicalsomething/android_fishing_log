@@ -302,6 +302,12 @@ public class FishingDatabaseAdapter {
 				Integer.toString(limit));
 	}
 	
+	public Cursor getSingleFish(long id)
+	{
+		return this.db.query(DATABASE_FISH_TABLE, null, FISH_KEY_ROWID + "=\'" + id + "\'", 
+				null, null, null, null);
+	}
+	
 	/**
 	 * Gets all the species currently in the database
 	 * @return A Cursor object containing all species in the database.
