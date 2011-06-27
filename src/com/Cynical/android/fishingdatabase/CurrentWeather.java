@@ -35,6 +35,11 @@ public class CurrentWeather extends Activity {
 				0, 0, wll);
 	}
 	
+	/**
+	 * Updates the information on the screen to display the current weather information
+	 * as retrieved from a WeatherRetriever instance.
+	 * @param loc = The location to send to the WeatherRetriever.
+	 */
 	protected void updateWeather(Location loc)
 	{
 		lm.removeUpdates(wll);

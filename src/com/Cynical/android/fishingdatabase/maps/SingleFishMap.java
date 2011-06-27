@@ -34,9 +34,9 @@ public class SingleFishMap extends MapActivity {
 		mv.setSatellite(true);
 		mc.setZoom(15);
 		
-		Bundle ex = this.getIntent().getExtras();
+		Bundle extra = this.getIntent().getExtras();
 		
-		long id = ex.getLong("id");
+		long id = extra.getLong("id");
 		
 		FishingDatabaseAdapter fda = new FishingDatabaseAdapter(this);
 		fda.open();
