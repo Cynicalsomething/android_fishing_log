@@ -81,7 +81,7 @@ public class startingUI extends ListActivity {
     		startActivity(i);
     		break;
     	case VIEW_LURE_COLLECTION:
-    		i = new Intent(this, NewFish.class);
+    		i = new Intent(this, ViewLureCollection.class);
     		startActivity(i);
     		break;
     	case ADD_LAKE:

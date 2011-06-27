@@ -1,6 +1,9 @@
 package com.Cynical.android.fishingdatabase;
 
+import com.Cynical.android.fishingdatabase.maps.SingleFishMap;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -95,6 +98,14 @@ public class ViewFishDetails extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent i;
+		switch(item.getItemId())
+		{
+		case R.id.menu_view_map:
+			i = new Intent(this, SingleFishMap.class);
+			i.putExtra("id", id);
+			startActivity(i);
+		}
 		return super.onOptionsItemSelected(item);
 	}
 

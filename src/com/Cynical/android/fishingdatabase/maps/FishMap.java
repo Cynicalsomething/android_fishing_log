@@ -1,5 +1,6 @@
-package com.Cynical.android.fishingdatabase;
+package com.Cynical.android.fishingdatabase.maps;
 
+import com.Cynical.android.fishingdatabase.R;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;

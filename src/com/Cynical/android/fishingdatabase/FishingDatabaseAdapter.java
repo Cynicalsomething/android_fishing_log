@@ -161,7 +161,7 @@ public class FishingDatabaseAdapter {
 	 */
 	public Cursor getLureTypes()
 	{
-		String columns[] = new String[] {LURETYPES_KEY_LURETYPE};
+		String columns[] = new String[] {LURETYPES_KEY_ROWID, LURETYPES_KEY_LURETYPE};
 		return this.db.query(DATABASE_LURETYPES_TABLE, columns,
 				null, null, null, null, null);
 	}
@@ -198,7 +198,7 @@ public class FishingDatabaseAdapter {
 	 */
 	public Cursor getLureTypeColors(String luretype)
 	{
-		String[] columns = new String[] {LURE_KEY_LURECOLOR};
+		String[] columns = new String[] {LURE_KEY_ROWID, LURE_KEY_LURECOLOR};
 		return this.db.query(DATABASE_LURE_TABLE, columns, LURE_KEY_LURETYPE + "='" + luretype + "'",
 				null, null, null, null);
 	}
