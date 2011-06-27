@@ -69,6 +69,9 @@ public class startingUI extends ListActivity {
     	Log.i("Item Clicked", "View: " + 
 				 rowTitle.getText() +
 				" ID: " + position);
+    	/**
+    	 * Switch to determine what the user clicked. Then start the associated activity.
+    	 */
     	Intent i;
     	switch(position)
     	{
@@ -127,6 +130,9 @@ public class startingUI extends ListActivity {
         		R.id.main_list_row_icon};
         int rowLayout = R.layout.main_list_row;
         
+        /**
+         * Sets up the main menu
+         */
         SimpleAdapter sa;
         
         switch(menuSection)

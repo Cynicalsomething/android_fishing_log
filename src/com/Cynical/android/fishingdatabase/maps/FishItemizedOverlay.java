@@ -7,7 +7,12 @@ import android.graphics.drawable.Drawable;
 
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.OverlayItem;
-
+/**
+ * A sub-class of ItemizedOverlay that allows us to have collection of overlay items
+ * to add to a map.
+ * @author Adam
+ *
+ */
 public class FishItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 
 	private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
@@ -18,6 +23,10 @@ public class FishItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 		this.mCtx = ctx;
 	}
 	
+	/**
+	 * Adds an overlay to the mOverlays ArrayList object and calls populate().
+	 * @param overlay = The overlay to add to the map.
+	 */
 	public void addOverlay(OverlayItem overlay)
 	{
 		mOverlays.add(overlay);

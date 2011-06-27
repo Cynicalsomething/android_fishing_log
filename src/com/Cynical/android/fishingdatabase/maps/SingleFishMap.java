@@ -15,6 +15,11 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 
+/**
+ * Activity to display a map and marker of one single fish in the database.
+ * @author Adam
+ *
+ */
 public class SingleFishMap extends MapActivity {
 
 	
@@ -39,6 +44,7 @@ public class SingleFishMap extends MapActivity {
 		startManagingCursor(c);
 		if(c.moveToFirst())
 		{
+			//Get Latitude and Longitude of the catch and move to that location 
 			int latIndex = c.getColumnIndex(FishingDatabaseAdapter.FISH_KEY_LATITUDE);
 			int longIndex = c.getColumnIndex(FishingDatabaseAdapter.FISH_KEY_LONGITUDE);
 			double latitude = c.getDouble(latIndex);
@@ -46,18 +52,22 @@ public class SingleFishMap extends MapActivity {
 			GeoPoint gp = new GeoPoint((int) (latitude * 1E6), (int) (longitude * 1E6));
 			mc.animateTo(gp);
 			
+			//Setup overlay objects
 			List<Overlay> mapOverlays = mv.getOverlays();
 			Drawable drawable = this.getResources().getDrawable(R.drawable.marker_orange);
 			FishItemizedOverlay fio = new FishItemizedOverlay(drawable, this);
 			
+			//Get index for details
 			int speciesIndex = c.getColumnIndex(FishingDatabaseAdapter.FISH_KEY_SPECIES);
 			int lengthIndex = c.getColumnIndex(FishingDatabaseAdapter.FISH_KEY_LENGTH);
 			int weightIndex = c.getColumnIndex(FishingDatabaseAdapter.FISH_KEY_WEIGHT);
 			
+			//Consruct detailed strings
 			String species = c.getString(speciesIndex);
 			String details = c.getString(lengthIndex) + "\"  " + 
 				c.getString(weightIndex) + " lbs."; 
 			
+			//Add overlays to map
 			OverlayItem oi = new OverlayItem(gp, species, details);
 			fio.addOverlay(oi);
 			mapOverlays.add(fio);

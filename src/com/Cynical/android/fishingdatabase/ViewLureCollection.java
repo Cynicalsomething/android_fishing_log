@@ -6,7 +6,11 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
 import android.widget.SimpleCursorTreeAdapter;
-
+/**
+ * Activity to view all lures and colors in the database arranged as an Expandable List.
+ * @author Adam
+ *
+ */
 public class ViewLureCollection extends ExpandableListActivity {
 	
 	private String[] groupColumns = {FishingDatabaseAdapter.LURETYPES_KEY_ROWID, 
@@ -47,7 +51,12 @@ public class ViewLureCollection extends ExpandableListActivity {
 		fda.close();
 	}
 
-
+	/**
+	 * Sub-class of a SimpleCursorTreeAdapter to display an expandable list containing 
+	 * all lures and their associated colors in an explanable list.
+	 * @author Adam
+	 *
+	 */
 	private class LureExpandableListAdapter extends SimpleCursorTreeAdapter
 	{
 
