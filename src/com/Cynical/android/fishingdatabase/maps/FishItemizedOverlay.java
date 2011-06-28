@@ -2,6 +2,7 @@ package com.Cynical.android.fishingdatabase.maps;
 
 import java.util.ArrayList;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
@@ -33,6 +34,16 @@ public class FishItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 		populate();
 	}
 	
+	@Override
+	protected boolean onTap(int index) {
+		OverlayItem item = mOverlays.get(index);
+		AlertDialog.Builder dialog = new AlertDialog.Builder(mCtx);
+		dialog.setTitle(item.getTitle());
+		dialog.setMessage(item.getSnippet());
+		dialog.show();
+		return true;
+	}
+
 	@Override
 	protected OverlayItem createItem(int i) {
 		return mOverlays.get(i);
