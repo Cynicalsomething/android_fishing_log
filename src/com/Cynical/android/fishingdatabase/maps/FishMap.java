@@ -16,6 +16,7 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+//TODO Add the ability to view a single fish
 public class FishMap extends MapActivity {
 
 	private MapView mv;

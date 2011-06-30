@@ -15,6 +15,7 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 
+//TODO Merge this class with FishMap.java
 /**
  * Activity to display a map and marker of one single fish in the database.
  * @author Adam

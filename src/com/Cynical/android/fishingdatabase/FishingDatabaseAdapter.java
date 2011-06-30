@@ -293,6 +293,12 @@ public class FishingDatabaseAdapter {
 		return id;
 	}
 	
+	/**
+	 * Fetches the '#' newest fish added to the database, where # is the 
+	 * number of fish to fetch
+	 * @param limit = The total number of fish to fetch from the database
+	 * @return  A cursor object containing the fish.
+	 */
 	public Cursor getFish(int limit)
 	{
 		return this.db.query(DATABASE_FISH_TABLE, null, 
@@ -300,6 +306,11 @@ public class FishingDatabaseAdapter {
 				Integer.toString(limit));
 	}
 	
+	/**
+	 * Fetches all fish from a specified lake
+	 * @param lakeName = The specified lake that the fish will be from
+	 * @return A cursor object containing the fish.
+	 */
 	public Cursor getFishFromLake(String lakeName)
 	{
 		return this.db.query(DATABASE_FISH_TABLE, null, 
@@ -307,12 +318,22 @@ public class FishingDatabaseAdapter {
 				null, null, null, null);
 	}
 	
+	/**
+	 * Fetch a single fish from the database.
+	 * @param id = The row id that you would like to fetch
+	 * @return A Cursor object containing the single fish.
+	 */
 	public Cursor getSingleFish(long id)
 	{
 		return this.db.query(DATABASE_FISH_TABLE, null, FISH_KEY_ROWID + "=\'" + id + "\'", 
 				null, null, null, null);
 	}
 	
+	/**
+	 * Removes a single fish from the database.
+	 * @param id = The row id of the fish to remove.
+	 * @return A boolean value signifying if a fish was removed.
+	 */
 	public boolean removeFish(long id)
 	{
 		int rowsAffected = this.db.delete(
