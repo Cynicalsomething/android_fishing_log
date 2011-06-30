@@ -9,7 +9,11 @@ import android.widget.Toast;
 import com.google.android.maps.MapView;
 import com.google.android.maps.OverlayItem;
 import com.readystatesoftware.mapviewballoons.BalloonItemizedOverlay;
-
+/**
+ * Uses android-mapviewballoons by jgilfelt (Jeff Gilfelt) of jeffgilfelt.com
+ * @author Adam
+ *
+ */
 public class FishBalloonItemizedOverlay extends BalloonItemizedOverlay<OverlayItem> {
 
 	private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
