@@ -55,7 +55,7 @@ public class SingleFishMap extends MapActivity {
 			//Setup overlay objects
 			List<Overlay> mapOverlays = mv.getOverlays();
 			Drawable drawable = this.getResources().getDrawable(R.drawable.marker_orange);
-			FishItemizedOverlay fio = new FishItemizedOverlay(drawable, this);
+			FishBalloonItemizedOverlay fio = new FishBalloonItemizedOverlay(drawable, mv);
 			
 			//Get index for details
 			int speciesIndex = c.getColumnIndex(FishingDatabaseAdapter.FISH_KEY_SPECIES);

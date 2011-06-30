@@ -5,6 +5,6 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="lib" path="CWAC-MergeAdapter.jar"/>
 	<classpathentry kind="lib" path="CWAC-SackOfViewsAdapter.jar"/>
-	<classpathentry kind="lib" path="jgilfelt-android-mapviewballoons-0a4f837.jar"/>
+	<classpathentry kind="src" path="android-mapviewballoons_src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
