@@ -22,14 +22,16 @@ import com.google.android.maps.OverlayItem;
  */
 public class SingleFishMap extends MapActivity {
 
-	
+	private MapView mv;
+	private MapController mc;
+	private FishingDatabaseAdapter fda;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fishmap);
-		MapView mv = (MapView) findViewById(R.id.fishmapview);
-		MapController mc = mv.getController();
+		mv = (MapView) findViewById(R.id.fishmapview);
+		mc = mv.getController();
 		mv.setBuiltInZoomControls(true);
 		mv.setSatellite(true);
 		mc.setZoom(15);
@@ -38,7 +40,7 @@ public class SingleFishMap extends MapActivity {
 		
 		long id = extra.getLong("id");
 		
-		FishingDatabaseAdapter fda = new FishingDatabaseAdapter(this);
+		fda = new FishingDatabaseAdapter(this);
 		fda.open();
 		Cursor c = fda.getSingleFish(id);
 		startManagingCursor(c);
@@ -61,17 +63,22 @@ public class SingleFishMap extends MapActivity {
 			int speciesIndex = c.getColumnIndex(FishingDatabaseAdapter.FISH_KEY_SPECIES);
 			int lengthIndex = c.getColumnIndex(FishingDatabaseAdapter.FISH_KEY_LENGTH);
 			int weightIndex = c.getColumnIndex(FishingDatabaseAdapter.FISH_KEY_WEIGHT);
+			int lureTypeIndex = c.getColumnIndex(FishingDatabaseAdapter.FISH_KEY_LURETYPE);
+			int lureColorIndex = c.getColumnIndex(
+					FishingDatabaseAdapter.FISH_KEY_LURECOLOR);
 			
-			//Consruct detailed strings
+			//Construct detailed strings
 			String species = c.getString(speciesIndex);
-			String details = c.getString(lengthIndex) + "\"  " + 
-				c.getString(weightIndex) + " lbs."; 
+			String details = c.getString(lengthIndex) + "\", " + 
+				c.getString(weightIndex) + " lbs. \n" + c.getString(lureTypeIndex) + " (" + 
+				c.getString(lureColorIndex) + ")"; 
 			
 			//Add overlays to map
 			OverlayItem oi = new OverlayItem(gp, species, details);
 			fio.addOverlay(oi);
 			mapOverlays.add(fio);
 		}
+		fda.close();
 	}
 
 	@Override

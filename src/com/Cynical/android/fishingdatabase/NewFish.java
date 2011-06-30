@@ -26,6 +26,7 @@ public class NewFish extends Activity {
 	private Spinner lureTypesSpin;
 	private Spinner lureColorSpin;
 	private WeatherRetriever wr;
+	private FishingDatabaseAdapter fda;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class NewFish extends Activity {
 					wr = new WeatherRetriever(latitude, longitude);
 					wr.retrieveWeather();
 					
-					FishingDatabaseAdapter fda = new FishingDatabaseAdapter(NewFish.this);
+					fda = new FishingDatabaseAdapter(NewFish.this);
 					fda.open();
 					
 					EditText fishLengthET = (EditText) findViewById(R.id.fish_length);
@@ -129,7 +130,7 @@ public class NewFish extends Activity {
 		lakeSpin = (Spinner) findViewById(R.id.spinner_lakename);
 		lureTypesSpin = (Spinner) findViewById(R.id.spinner_lure_type);
 		lureColorSpin = (Spinner) findViewById(R.id.spinner_lure_color);
-		FishingDatabaseAdapter fda = new FishingDatabaseAdapter(this);
+		fda = new FishingDatabaseAdapter(this);
 		fda.open();
 		
 		//Populate the Fish Species spinner with species in the database
@@ -152,6 +153,7 @@ public class NewFish extends Activity {
 		}
 		//Populate the Lake Name spinner with lakes in the database
 		c = fda.getLakes();
+		startManagingCursor(c);
 		if(c.moveToFirst())
 		{
 			String[] lakes = new String[c.getCount()];
@@ -169,6 +171,7 @@ public class NewFish extends Activity {
 		}
 		//Populate the Lure Type spinner with lure types in the database
 		c = fda.getLureTypes();
+		startManagingCursor(c);
 		if(c.moveToFirst())
 		{
 			String lureTypes[] = new String[c.getCount()];
@@ -189,10 +192,7 @@ public class NewFish extends Activity {
 				public void onItemSelected(AdapterView<?> arg0, View arg1,
 						int arg2, long arg3) {
 					String selectedLureType = arg0.getSelectedItem().toString();
-					FishingDatabaseAdapter fda = new FishingDatabaseAdapter(NewFish.this);
-					fda.open();
 					populateLureColorSpinner(selectedLureType, fda);
-					fda.close();
 				}
 
 				@Override
@@ -201,7 +201,6 @@ public class NewFish extends Activity {
 				}
 			});
 		}
-		fda.close();
 		
 		
 	}
@@ -228,12 +227,21 @@ public class NewFish extends Activity {
 		}
 	}
 
+	
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		fda.close();
+	}
+
 	@Override
 	protected void onStop() {
 		super.onStop();
 		
 		try {
 			lm.removeUpdates(fdll);
+			fda.close();
 		} catch (IllegalArgumentException e) {
 			//Do Nothing
 		}

@@ -3,6 +3,9 @@ package com.Cynical.android.fishingdatabase;
 import com.Cynical.android.fishingdatabase.maps.SingleFishMap;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -105,6 +108,43 @@ public class ViewFishDetails extends Activity {
 			i = new Intent(this, SingleFishMap.class);
 			i.putExtra("id", id);
 			startActivity(i);
+			break;
+		case R.id.menu_delete_fish:
+			AlertDialog.Builder adb = new AlertDialog.Builder(this);
+			adb.setMessage("Are you sure you want to remove this fish?");
+			adb.setPositiveButton("Yes", new OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					FishingDatabaseAdapter fda = 
+						new FishingDatabaseAdapter(ViewFishDetails.this);
+					fda.open();
+					boolean success = fda.removeFish(id);
+					fda.close();
+					if(success)
+					{
+						Toast.makeText(ViewFishDetails.this, 
+								"Fish removed successfully!", Toast.LENGTH_LONG).show();
+					}
+					else
+					{
+						Toast.makeText(ViewFishDetails.this, 
+								"Fish could not be removed...", Toast.LENGTH_LONG).show();
+					}
+					finish();
+				}
+			});
+			adb.setCancelable(false);
+			adb.setNegativeButton("Cancel", new OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
+				}
+			});
+			AlertDialog dialog = adb.create();
+			dialog.show();
+			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}

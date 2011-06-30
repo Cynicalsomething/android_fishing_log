@@ -209,7 +209,7 @@ public class FishingDatabaseAdapter {
 	 */
 	public Cursor getLakes()
 	{
-		String[] columns = new String[] {LAKE_KEY_LAKENAME};
+		String[] columns = new String[] {LAKE_KEY_ROWID, LAKE_KEY_LAKENAME};
 		return this.db.query(DATABASE_LAKE_TABLE, columns, null, null, null, null, null);
 	}
 	
@@ -295,17 +295,29 @@ public class FishingDatabaseAdapter {
 	
 	public Cursor getFish(int limit)
 	{
-		String[] columns =  new String[] {FISH_KEY_ROWID, FISH_KEY_SPECIES, 
-				FISH_KEY_LAKENAME, FISH_KEY_LENGTH, FISH_KEY_WEIGHT};
-		return this.db.query(DATABASE_FISH_TABLE, columns, 
+		return this.db.query(DATABASE_FISH_TABLE, null, 
 				null, null, null, null, FISH_KEY_ROWID + " DESC", 
 				Integer.toString(limit));
+	}
+	
+	public Cursor getFishFromLake(String lakeName)
+	{
+		return this.db.query(DATABASE_FISH_TABLE, null, 
+				LAKE_KEY_LAKENAME + " = '" + lakeName + "'",
+				null, null, null, null);
 	}
 	
 	public Cursor getSingleFish(long id)
 	{
 		return this.db.query(DATABASE_FISH_TABLE, null, FISH_KEY_ROWID + "=\'" + id + "\'", 
 				null, null, null, null);
+	}
+	
+	public boolean removeFish(long id)
+	{
+		int rowsAffected = this.db.delete(
+				DATABASE_FISH_TABLE, FISH_KEY_ROWID + " = " + id, null);
+		return (rowsAffected > 0);
 	}
 	
 	/**

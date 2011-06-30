@@ -3,10 +3,14 @@ package com.Cynical.android.fishingdatabase;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.Cynical.android.fishingdatabase.maps.FishMap;
 import com.commonsware.cwac.merge.MergeAdapter;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -58,12 +62,13 @@ public class startingUI extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
     	final int NEW_FISH = 1;
     	final int VIEW_EDIT_FISH = 2;
-    	final int VIEW_LURE_COLLECTION = 3;
-    	final int ADD_LAKE = 5;
-    	final int ADD_LURE = 6;
-    	final int ADD_LURE_COLOR = 7;
-    	final int ADD_SPECIES = 8;
-    	final int CHECK_WEATHER = 10;
+    	final int VIEW_FISH_FROM_LAKE = 3;
+    	final int VIEW_LURE_COLLECTION = 4;
+    	final int ADD_LAKE = 6;
+    	final int ADD_LURE = 7;
+    	final int ADD_LURE_COLOR = 8;
+    	final int ADD_SPECIES = 9;
+    	final int CHECK_WEATHER = 11;
     	
 		TextView rowTitle = (TextView) v.findViewById(R.id.main_list_row_primary_text);
     	Log.i("Item Clicked", "View: " + 
@@ -82,6 +87,43 @@ public class startingUI extends ListActivity {
     	case VIEW_EDIT_FISH:
     		i = new Intent(this, ViewFish.class);
     		startActivity(i);
+    		break;
+    	case VIEW_FISH_FROM_LAKE:
+    		FishingDatabaseAdapter fda = new FishingDatabaseAdapter(this);
+    		fda.open();
+    		AlertDialog.Builder adb = new AlertDialog.Builder(this);
+    		adb.setTitle("Which Lake?");
+    		adb.setCancelable(true);
+    		Cursor c = fda.getLakes();
+    		startManagingCursor(c);
+    		adb.setCursor(c, new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					FishingDatabaseAdapter fda = 
+						new FishingDatabaseAdapter(startingUI.this);
+					fda.open();
+					Cursor c = fda.getLakes();
+					if(c.moveToPosition(which))	
+					{
+						String lake = c.getString(c.getColumnIndex(
+								FishingDatabaseAdapter.LAKE_KEY_LAKENAME));
+						Intent i = new Intent(startingUI.this, FishMap.class);
+						i.putExtra("lake", lake);
+			    		startActivity(i);
+					}
+					else
+					{
+						Log.e("DialogInterface.OnClickListener()",
+								"List position not reachable");
+						dialog.cancel();
+					}
+					fda.close();
+				}
+			}, FishingDatabaseAdapter.LAKE_KEY_LAKENAME);
+    		AlertDialog dialog = adb.create();
+    		dialog.show();
+    		fda.close();
     		break;
     	case VIEW_LURE_COLLECTION:
     		i = new Intent(this, ViewLureCollection.class);
@@ -148,6 +190,12 @@ public class startingUI extends ListActivity {
             map.put(from[0], "View/Edit Fish");
             map.put(from[1], "View all your fish and edit them if you'd like");
             map.put(from[2], R.drawable.ic_fish_smile);
+            
+            menuList.add(map);
+            
+            map = new HashMap<String, Object>();
+            map.put(from[0], "View Fish from Lake");
+            map.put(from[1], "View your catches on a certain lake on a map");
             
             menuList.add(map);
             

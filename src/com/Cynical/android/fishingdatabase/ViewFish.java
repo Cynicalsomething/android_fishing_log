@@ -1,11 +1,16 @@
 package com.Cynical.android.fishingdatabase;
 
+import com.Cynical.android.fishingdatabase.maps.FishMap;
+
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -33,8 +38,29 @@ public class ViewFish extends ListActivity {
 				c, columns, bind);
 		this.setListAdapter(sca);
 		
+		
+		
 	}
 	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater mi = getMenuInflater();
+		mi.inflate(R.menu.view_edit_fish_menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent i;
+		switch(item.getItemId())
+		{
+		case R.id.view_50_on_map:
+			i = new Intent(this, FishMap.class);
+			startActivity(i);
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
