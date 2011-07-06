@@ -20,7 +20,7 @@ public class FishBalloonItemizedOverlay extends BalloonItemizedOverlay<OverlayIt
 	private Context mCtx;
 	
 	public FishBalloonItemizedOverlay(Drawable defaultMarker, MapView mapView) {
-		super(boundCenterBottom(defaultMarker), mapView);
+		super(boundCenter(defaultMarker), mapView);
 		this.mCtx = mapView.getContext();
 	}
 	
