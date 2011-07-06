@@ -48,4 +48,5 @@
     <string name="app_preferences_name">Preferences</string>
     <string name="menu_view_last_50_on_map">View on map</string>
     <string name="menu_delete_fish">Remove Fish</string>
+    <string name="menu_edit_fish">Edit Fish</string>
 </resources>

@@ -109,6 +109,11 @@ public class ViewFishDetails extends Activity {
 			i.putExtra("id", id);
 			startActivity(i);
 			break;
+		case R.id.menu_edit_fish:
+			i = new Intent(this, EditFish.class);
+			i.putExtra("id", id);
+			startActivity(i);
+			break;
 		case R.id.menu_delete_fish:
 			AlertDialog.Builder adb = new AlertDialog.Builder(this);
 			adb.setMessage("Are you sure you want to remove this fish?");

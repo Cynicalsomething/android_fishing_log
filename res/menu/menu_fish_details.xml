@@ -3,6 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="@string/menu_view_on_map" 
     android:icon="@android:drawable/ic_menu_mapmode" android:visible="true" android:id="@+id/menu_view_map"></item>
-    <item android:title="@string/menu_delete_fish" android:visible="true" android:id="@+id/menu_delete_fish" android:icon="@android:drawable/ic_menu_close_clear_cancel"></item>
+    <item android:id="@+id/menu_edit_fish" android:visible="true" android:title="@string/menu_edit_fish" android:icon="@android:drawable/ic_menu_edit"></item><item android:title="@string/menu_delete_fish" android:visible="true" android:id="@+id/menu_delete_fish" android:icon="@android:drawable/ic_menu_close_clear_cancel"></item>
+    
     
 </menu>
